@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -7,24 +8,25 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
 import {Producto} from '../models';
 import {ProductoRepository} from '../repositories';
 
 export class ProductoController {
   constructor(
     @repository(ProductoRepository)
-    public productoRepository : ProductoRepository,
-  ) {}
+    public productoRepository: ProductoRepository,
+  ) { }
 
   @post('/producto')
   @response(200, {
@@ -58,6 +60,10 @@ export class ProductoController {
     return this.productoRepository.count(where);
   }
 
+  @authenticate({
+    strategy: "auth",
+    options: [ConfiguracionSeguridad.menuProductoId, ConfiguracionSeguridad.listarAccion]
+  })
   @get('/producto')
   @response(200, {
     description: 'Array of Producto model instances',
