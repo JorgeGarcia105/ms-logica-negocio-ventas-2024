@@ -1,5 +1,4 @@
-import {ApplicationConfig, App} from './application';
-
+import {App, ApplicationConfig} from './application';
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
