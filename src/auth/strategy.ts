@@ -5,7 +5,7 @@ import {inject} from '@loopback/context';
 import {HttpErrors, Request} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
 import parseBearerToken from 'parse-bearer-token';
-import {ConfiguracionSeguridad} from '../configuracion.seguridad';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
 const fetch = require('node-fetch');
 
 export class AuthStrategy implements AuthenticationStrategy {

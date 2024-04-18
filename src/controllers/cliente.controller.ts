@@ -82,14 +82,14 @@ export class ClienteController {
   })
   async find(
     @param.filter(Cliente) filter?: Filter<Cliente>,
-  ): Promise<object> { //PaginadorCliente
+  ): Promise<PaginadorCliente> { //PaginadorCliente //object
     let total: number = (await this.clienteRepository.count()).count;
     let registros: Cliente[] = await this.clienteRepository.find(filter);
-    let respuesta = {
+    /*let respuesta = {
       registros: registros,
       totalRegistros: total
-    }
-    /*let respuesta: PaginadorCliente = {
+    }*/
+    let respuesta: PaginadorCliente = {
       registros: registros,
       totalRegistros: total,
       toJSON: function () {
@@ -98,10 +98,9 @@ export class ClienteController {
       toObject: function () {
         return this.toObject();
       }
-    };*/
+    };
     return respuesta;
   }
-
 
   @patch('/cliente')
   @response(200, {

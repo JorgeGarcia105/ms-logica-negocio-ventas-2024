@@ -9,7 +9,7 @@ import {
 } from '@loopback/rest-explorer';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
-import {AuthStrategy} from './config/auth/strategy';
+import {AuthStrategy} from './auth/strategy';
 import {MySequence} from './sequence';
 
 export {ApplicationConfig};
